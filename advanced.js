@@ -95,56 +95,109 @@
 // let sum3 = sumRest(1,2,3,4,5,6);
 // console.log("Sum3:", sum3);
 
-// DESTRUCTURING.......................................
+// // DESTRUCTURING.......................................
 
-// Destructuring arrays
-let ages = [30, 26, 27];
-// let john = ages[0];
-// let mary = ages[1];
-// let joe = ages[2];
-let [john, mary, joe] = ages;
-console.log(john, mary, joe);
+// // Destructuring arrays
+// let ages = [30, 26, 27];
+// // let john = ages[0];
+// // let mary = ages[1];
+// // let joe = ages[2];
+// let [john, mary, joe] = ages;
+// console.log(john, mary, joe);
 
-// Destructuring objects
-let jobs = {
-    mike: "designer",
-    jill: "developer",
-    alicia: "accountant"
-};
-let {mike, jill, alicia} = jobs;
-console.log(mike, jill, alicia);
+// // Destructuring objects
+// let jobs = {
+//     mike: "designer",
+//     jill: "developer",
+//     alicia: "accountant"
+// };
+// let {mike, jill, alicia} = jobs;
+// console.log(mike, jill, alicia);
 
-// Destructuring subsets
-let languages = ["english", "french", "spanish", "german", "japanese"];
-let [johnNative, johnSecondary] = languages;
-console.log(johnNative, johnSecondary);
+// // Destructuring subsets
+// let languages = ["english", "french", "spanish", "german", "japanese"];
+// let [johnNative, johnSecondary] = languages;
+// console.log(johnNative, johnSecondary);
 
-let [, , maryNative, marySecondary] = languages;
-console.log(maryNative, marySecondary);
+// let [, , maryNative, marySecondary] = languages;
+// console.log(maryNative, marySecondary);
 
-let languages2 = {
-    firstLanguage: "english",
-    secondLanguage: "french",
-    thirdLanguage: "german",
-    fourthLanguage: "japanese",
-};
-let {firstLanguage, thirdLanguage} = languages2;
-console.log(firstLanguage, thirdLanguage);
+// let languages2 = {
+//     firstLanguage: "english",
+//     secondLanguage: "french",
+//     thirdLanguage: "german",
+//     fourthLanguage: "japanese",
+// };
+// let {firstLanguage, thirdLanguage} = languages2;
+// console.log(firstLanguage, thirdLanguage);
 
-// Using rest parameter syntax
-let fruits = ["apple", "orange", "banana", "peach", "cherry"];
-let [favorite, secondFavorite, ...others] = fruits;
-console.log(favorite);
-console.log(secondFavorite);
-console.log(others);
+// // Using rest parameter syntax
+// let fruits = ["apple", "orange", "banana", "peach", "cherry"];
+// let [favorite, secondFavorite, ...others] = fruits;
+// console.log(favorite);
+// console.log(secondFavorite);
+// console.log(others);
 
-let favoriteFoods = {
-    brian: "pizza",
-    anna: "pasta",
-    sarah: "vegetarian",
-    andrea: "steak"
-};
-let {brian, anna, ...rest} = favoriteFoods;
-console.log(brian);
-console.log(anna);
-console.log(rest);
+// let favoriteFoods = {
+//     brian: "pizza",
+//     anna: "pasta",
+//     sarah: "vegetarian",
+//     andrea: "steak"
+// };
+// let {brian, anna, ...rest} = favoriteFoods;
+// console.log(brian);
+// console.log(anna);
+// console.log(rest);
+
+// MAP METHODS.......................................
+
+
+// Using a for loop
+let nums = [1,2,3,4,5];
+let results = [];
+for (let num of nums) {
+    results.push(num * 2);
+}
+console.log(results);
+
+// Using map()
+const multByTwo = function (num) {
+    return num * 2;
+}
+
+const mapResults = nums.map(multByTwo);
+console.log(mapResults);
+
+
+// Simplified w/ map()
+const simplified = nums.map(function (num) {return num * 2});
+console.log(simplified);
+
+// Simplfied w/ map() + arrow function
+const arrow = nums.map(num => num * 2);
+console.log(arrow);
+
+// With objects:
+const students = [
+    {
+      id: 1,
+      name: 'Mark',
+      profession: 'Developer',
+      skill: 'JavaScript'
+    },
+    {
+      id: 2,
+      name: 'Ariel',
+      profession: 'Developer',
+      skill: 'HTML'
+    },
+    {
+      id: 3,
+      name: 'Jason',
+      profession: 'Designer',
+      skill: 'CSS'
+    },
+  ];
+
+const studentsWithIds = students.map(student => [student.name, student.id]);
+console.log(studentsWithIds);
