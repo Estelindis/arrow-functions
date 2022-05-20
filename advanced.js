@@ -201,72 +201,126 @@
 // const studentsWithIds = students.map(student => [student.name, student.id]);
 // console.log(studentsWithIds);
 
-// FILTER METHODS.......................................
+// // FILTER METHODS.......................................
 
-// Simple Filtering
-const people = [
-    {
-      name: 'Michael',
-      age: 23,
-    },
-    {
-      name: 'Lianna',
-      age: 16,
-    },
-    {
-      name: 'Paul',
-      age: 18,
-    },
-  ];
+// // Simple Filtering
+// const people = [
+//     {
+//       name: 'Michael',
+//       age: 23,
+//     },
+//     {
+//       name: 'Lianna',
+//       age: 16,
+//     },
+//     {
+//       name: 'Paul',
+//       age: 18,
+//     },
+//   ];
 
-  const oldEnough = people.filter(person => person.age >= 21);
-  console.log(oldEnough);
+//   const oldEnough = people.filter(person => person.age >= 21);
+//   console.log(oldEnough);
   
-  const paul = people.filter(p => p.name === 'Paul')[0];
-  console.log(paul);
+//   const paul = people.filter(p => p.name === 'Paul')[0];
+//   console.log(paul);
   
-  // Complex Filtering
-  const students = [
-    {
-      id: 1,
-      name: 'Mark',
-      profession: 'Developer',
-      skills: [
-        { name: 'javascript', yrsExperience: 1 },
-        { name: 'html', yrsExperience: 5 },
-        { name: 'css', yrsExperience: 3 },
-      ]
-    },
-    {
-      id: 2,
-      name: 'Ariel',
-      profession: 'Developer',
-      skills: [
-        { name: 'javascript', yrsExperience: 0 },
-        { name: 'html', yrsExperience: 4 },
-        { name: 'css', yrsExperience: 2 },
-      ]
-    },
-    {
-      id: 3,
-      name: 'Jason',
-      profession: 'Designer',
-      skills: [
-        { name: 'javascript', yrsExperience: 1 },
-        { name: 'html', yrsExperience: 1 },
-        { name: 'css', yrsExperience: 5 },
-      ]
-    },
-  ];
+//   // Complex Filtering
+//   const students = [
+//     {
+//       id: 1,
+//       name: 'Mark',
+//       profession: 'Developer',
+//       skills: [
+//         { name: 'javascript', yrsExperience: 1 },
+//         { name: 'html', yrsExperience: 5 },
+//         { name: 'css', yrsExperience: 3 },
+//       ]
+//     },
+//     {
+//       id: 2,
+//       name: 'Ariel',
+//       profession: 'Developer',
+//       skills: [
+//         { name: 'javascript', yrsExperience: 0 },
+//         { name: 'html', yrsExperience: 4 },
+//         { name: 'css', yrsExperience: 2 },
+//       ]
+//     },
+//     {
+//       id: 3,
+//       name: 'Jason',
+//       profession: 'Designer',
+//       skills: [
+//         { name: 'javascript', yrsExperience: 1 },
+//         { name: 'html', yrsExperience: 1 },
+//         { name: 'css', yrsExperience: 5 },
+//       ]
+//     },
+//   ];
 
-// const candidates = students.filter(student => {
-//   let strongSkills = student.skills.filter(skill => skill.yrsExperience >= 5);
-//   return strongSkills.length > 0;
-// });
+// // const candidates = students.filter(student => {
+// //   let strongSkills = student.skills.filter(skill => skill.yrsExperience >= 5);
+// //   return strongSkills.length > 0;
+// // });
+// // console.log(candidates);
+
+// const has5yearsExp = skill => skill.yrsExperience >= 5;
+// const hasStrongSkills = student => student.skills.filter(has5yearsExp).length > 0;
+// const candidates = students.filter(hasStrongSkills);
 // console.log(candidates);
 
-const has5yearsExp = skill => skill.yrsExperience >= 5;
-const hasStrongSkills = student => student.skills.filter(has5yearsExp).length > 0;
-const candidates = students.filter(hasStrongSkills);
-console.log(candidates);
+// REDUCE METHODS.......................................
 
+// Summing an array of numbers:
+const nums = [0,1,2,3,4];
+// let sum = nums.reduce((acc, curr) => acc + curr);
+let sum = nums.reduce((acc, curr) => {
+  console.log(
+    "Accumulator:", acc,
+    "Current Value:", curr,
+    "Total:", acc + curr
+  );
+  return acc + curr;
+});
+console.log(sum);
+
+const teamMembers = [
+  {
+    name: 'Andrew',
+    profession: 'Developer',
+    yrsExperience: 5
+  },
+  {
+    name: 'Ariel',
+    profession: 'Developer',
+    yrsExperience: 7
+  },
+  {
+    name: 'Michael',
+    profession: 'Designer',
+    yrsExperience: 1
+  },
+  {
+    name: 'Kelly',
+    profession: 'Designer',
+    yrsExperience: 3
+  }
+];
+
+// Totaling a specific object property
+let totExp = teamMembers.reduce((acc, curr) => acc + curr.yrsExperience, 0);
+console.log(totExp);
+
+// Grouping by a property, and totaling it too
+let expProf = teamMembers.reduce((acc, curr) => {
+  let key = curr.profession;
+  if (!acc[key]) {
+    acc[key] = curr.yrsExperience;
+  } else {
+    acc[key] += curr.yrsExperience;
+  }
+  return acc;
+}, {});
+
+console.log(expProf);
