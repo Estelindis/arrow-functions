@@ -149,55 +149,124 @@
 // console.log(anna);
 // console.log(rest);
 
-// MAP METHODS.......................................
+// // MAP METHODS.......................................
+
+// // Using a for loop
+// let nums = [1,2,3,4,5];
+// let results = [];
+// for (let num of nums) {
+//     results.push(num * 2);
+// }
+// console.log(results);
+
+// // Using map()
+// const multByTwo = function (num) {
+//     return num * 2;
+// }
+
+// const mapResults = nums.map(multByTwo);
+// console.log(mapResults);
 
 
-// Using a for loop
-let nums = [1,2,3,4,5];
-let results = [];
-for (let num of nums) {
-    results.push(num * 2);
-}
-console.log(results);
+// // Simplified w/ map()
+// const simplified = nums.map(function (num) {return num * 2});
+// console.log(simplified);
 
-// Using map()
-const multByTwo = function (num) {
-    return num * 2;
-}
+// // Simplfied w/ map() + arrow function
+// const arrow = nums.map(num => num * 2);
+// console.log(arrow);
 
-const mapResults = nums.map(multByTwo);
-console.log(mapResults);
+// // With objects:
+// const students = [
+//     {
+//       id: 1,
+//       name: 'Mark',
+//       profession: 'Developer',
+//       skill: 'JavaScript'
+//     },
+//     {
+//       id: 2,
+//       name: 'Ariel',
+//       profession: 'Developer',
+//       skill: 'HTML'
+//     },
+//     {
+//       id: 3,
+//       name: 'Jason',
+//       profession: 'Designer',
+//       skill: 'CSS'
+//     },
+//   ];
 
+// const studentsWithIds = students.map(student => [student.name, student.id]);
+// console.log(studentsWithIds);
 
-// Simplified w/ map()
-const simplified = nums.map(function (num) {return num * 2});
-console.log(simplified);
+// FILTER METHODS.......................................
 
-// Simplfied w/ map() + arrow function
-const arrow = nums.map(num => num * 2);
-console.log(arrow);
+// Simple Filtering
+const people = [
+    {
+      name: 'Michael',
+      age: 23,
+    },
+    {
+      name: 'Lianna',
+      age: 16,
+    },
+    {
+      name: 'Paul',
+      age: 18,
+    },
+  ];
 
-// With objects:
-const students = [
+  const oldEnough = people.filter(person => person.age >= 21);
+  console.log(oldEnough);
+  
+  const paul = people.filter(p => p.name === 'Paul')[0];
+  console.log(paul);
+  
+  // Complex Filtering
+  const students = [
     {
       id: 1,
       name: 'Mark',
       profession: 'Developer',
-      skill: 'JavaScript'
+      skills: [
+        { name: 'javascript', yrsExperience: 1 },
+        { name: 'html', yrsExperience: 5 },
+        { name: 'css', yrsExperience: 3 },
+      ]
     },
     {
       id: 2,
       name: 'Ariel',
       profession: 'Developer',
-      skill: 'HTML'
+      skills: [
+        { name: 'javascript', yrsExperience: 0 },
+        { name: 'html', yrsExperience: 4 },
+        { name: 'css', yrsExperience: 2 },
+      ]
     },
     {
       id: 3,
       name: 'Jason',
       profession: 'Designer',
-      skill: 'CSS'
+      skills: [
+        { name: 'javascript', yrsExperience: 1 },
+        { name: 'html', yrsExperience: 1 },
+        { name: 'css', yrsExperience: 5 },
+      ]
     },
   ];
 
-const studentsWithIds = students.map(student => [student.name, student.id]);
-console.log(studentsWithIds);
+// const candidates = students.filter(student => {
+//   let strongSkills = student.skills.filter(skill => skill.yrsExperience >= 5);
+//   return strongSkills.length > 0;
+// });
+// console.log(candidates);
+
+const has5yearsExp = skill => skill.yrsExperience >= 5;
+const hasStrongSkills = student => student.skills.filter(has5yearsExp).length > 0;
+const candidates = students.filter(hasStrongSkills);
+console.log(candidates);
+
